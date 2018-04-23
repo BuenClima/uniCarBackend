@@ -46,6 +46,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Devise auth gems
+gem 'devise'
 gem 'devise_token_auth'
 gem 'omniauth'
-gem 'devise'
+
+# Serializer
+gem 'active_model_serializers'
