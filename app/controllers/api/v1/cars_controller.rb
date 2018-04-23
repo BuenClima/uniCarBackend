@@ -33,13 +33,13 @@ module Api::V1
 
     # DELETE /v1/cars/{id}
     def destroy
-      product = current_user.cars.find(params[:id])
-      product.destroy
+      car = current_user.cars.find(params[:id])
+      car.destroy
       head 204
     end
 
     def car_params
-      params.require(:car).permit(:registratio, :brand, :model, :year, :image, :user)
+      params.require(:car).permit(:registratio, :brand, :model, :year, :image, :user, :seats)
     end
   end
 end

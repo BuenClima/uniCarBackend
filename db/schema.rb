@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180423170905) do
+ActiveRecord::Schema.define(version: 20180423230238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,30 @@ ActiveRecord::Schema.define(version: 20180423170905) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "seats"
     t.index ["user_id"], name: "index_cars_on_user_id"
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.bigint "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_sections_on_trip_id"
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "departure_time"
+    t.datetime "arrival_time"
+    t.bigint "car_id"
+    t.index ["car_id"], name: "index_trips_on_car_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,4 +83,6 @@ ActiveRecord::Schema.define(version: 20180423170905) do
   end
 
   add_foreign_key "cars", "users"
+  add_foreign_key "sections", "trips"
+  add_foreign_key "trips", "cars"
 end

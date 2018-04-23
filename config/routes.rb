@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:index, :show]
       resources :cars, only: [:index, :show, :create, :update, :destroy]
+      resources :trips, only: [:index, :show, :create, :update, :destroy]
+      resources :sections, only: [:index, :show, :create, :update, :destroy]
+      resources :cities, only: [:index, :show, :create, :update, :destroy]
     end
   end
 end
