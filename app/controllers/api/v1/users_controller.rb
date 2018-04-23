@@ -10,6 +10,5 @@ module Api::V1
     def show
       render json: User.find(params[:id])
     end
-
   end
 end
