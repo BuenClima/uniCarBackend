@@ -24,7 +24,8 @@ module Api::V1
     # PUT /v1/passengers/{id}
     def update
       passenger = Passenger.find(params[:id])
-      if passenger.update(passenger_params)
+      if passenger.update(:user => User.find(params[:user]),
+                          :trip => Trip.find(params[:trip]))
         render json: passenger, status: 200
       else
         render json: { errors: passenger.errors }, status: 500
@@ -39,7 +40,7 @@ module Api::V1
     end
 
     def passenger_params
-      params.require(:passenger).permit(:user, :trip)
+      params.permit(:user, :trip)
     end
   end
 end
