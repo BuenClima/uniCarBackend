@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :trips, only: [:index, :show, :create, :update, :destroy]
       resources :sections, only: [:index, :show, :create, :update, :destroy]
       resources :cities, only: [:index, :show, :create, :update, :destroy]
+      resources :passengers, only: [:index, :show, :create, :update, :destroy]
     end
   end
 end
