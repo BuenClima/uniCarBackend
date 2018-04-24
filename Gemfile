@@ -52,3 +52,7 @@ gem 'omniauth'
 
 # Serializer
 gem 'active_model_serializers'
+
+
+# Carrierwave
+gem 'carrierwave', '~> 1.0'

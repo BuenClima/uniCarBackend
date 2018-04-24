@@ -10,5 +10,18 @@ module Api::V1
     def show
       render json: User.find(params[:id])
     end
+
+    # PUT /v1/users/{id}
+    def update
+      if current_user.update(user_params)
+        render json: current_user, status: 200
+      else
+        render json: { errors: current_user.errors }, status: 500
+      end
+    end
+
+    def user_params
+      params.permit(:image)
+    end
   end
 end

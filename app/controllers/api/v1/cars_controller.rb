@@ -13,7 +13,12 @@ module Api::V1
 
     # POST /v1/cars
     def create
-      car = current_user.cars.build(car_params)
+      car = current_user.cars.build(:registratio => params[:registratio],
+                                    :brand => params[:brand],
+                                    :model => params[:model],
+                                    :seats => params[:seats],
+                                    :year=> params[:year],
+                                    :image => params[:image])
       if car.save
         render json: car, status: 200
       else
@@ -39,7 +44,7 @@ module Api::V1
     end
 
     def car_params
-      params.require(:car).permit(:registratio, :brand, :model, :year, :image, :user, :seats)
+      params.permit(:registratio, :brand, :model, :year, :image, :user, :seats)
     end
   end
 end
