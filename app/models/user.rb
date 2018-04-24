@@ -6,4 +6,10 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
   has_many :cars
   has_many :passengers
+  validates :name,
+            :last_name,
+            :birthdate,
+            :nickname,
+            presence: true
+  validates_uniqueness_of :email
 end
