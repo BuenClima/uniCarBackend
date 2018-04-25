@@ -14,7 +14,11 @@ module Api::V1
     # POST /v1/trips
     def create
       car = current_user.cars.find(params[:car])
-      trip = car.trips.build(trip_params)
+      trip = car.trips.new(:departure_time => params[:departure_time],
+                           :arrival_time => params[:arrival_time],
+                           :car => Car.find(params[:car]),
+                           :city_origin_id => City.find(params[:city_origin_id]),
+                           :city_destination_id => City.find(params[:city_destination_id]))
       if trip.save
         render json: trip, status: 200
       else
@@ -26,7 +30,11 @@ module Api::V1
     def update
       car = current_user.cars.find(params[:car])
       trip = car.trips.find(params[:id])
-      if trip.update(trip_params)
+      if trip.update(:departure_time => params[:departure_time],
+                     :arrival_time => params[:arrival_time],
+                     :car => Car.find(params[:car]),
+                     :city_origin_id => City.find(params[:city_origin_id]),
+                     :city_destination_id => City.find(params[:city_destination_id]))
         render json: trip, status: 200
       else
         render json: { errors: trip.errors }, status: 500
@@ -41,7 +49,7 @@ module Api::V1
     end
 
     def trip_params
-      params.require(:trip).permit(:departure_time, :arrival_time, :car)
+      params.require(:trip).permit(:departure_time, :arrival_time, :car, :city_origin_id, :city_destination_id)
     end
   end
 end

@@ -29,7 +29,12 @@ module Api::V1
     # PUT /v1/cars
     def update
       car = current_user.cars.find(params[:id])
-      if car.update(car_params)
+      if car.update(:registratio => params[:registratio],
+                    :brand => params[:brand],
+                    :model => params[:model],
+                    :seats => params[:seats],
+                    :year=> params[:year],
+                    :image => params[:image])
         render json: car, status: 200
       else
         render json: { errors: car.errors }, status: 500

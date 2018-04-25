@@ -14,8 +14,10 @@ module Api::V1
     # POST /v1/sections
     def create
       car = current_user.cars.find(params[:car])
-      trip = car.trips.find(params[:trip_id])
-      section = trip.sections.build(section_params)
+      trip = car.trips.find(params[:trip])
+      section = trip.sections.new(:trip => Trip.find(params[:trip]),
+                                  :city_origin_id => City.find(params[:city_origin_id]),
+                                  :city_destination_id => City.find(params[:city_destination_id]))
       if section.save
         render json: section, status: 200
       else
@@ -28,7 +30,9 @@ module Api::V1
       car = current_user.cars.find(params[:car])
       trip = car.trips.find(params[:trip])
       section = trip.sections.find(params[:id])
-      if section.update(trip_params)
+      if section.update(:trip => Trip.find(params[:trip]),
+                        :city_origin_id => City.find(params[:city_origin_id]),
+                        :city_destination_id => City.find(params[:city_destination_id]))
         render json: section, status: 200
       else
         render json: { errors: section.errors }, status: 500
@@ -43,7 +47,7 @@ module Api::V1
     end
 
     def section_params
-      params.require(:section).permit(:trip, :origin, :destination)
+      params.require(:section).permit(:trip, :city_origin_id, :city_destination_id)
     end
   end
 end
