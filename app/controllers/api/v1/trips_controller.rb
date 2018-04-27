@@ -48,6 +48,11 @@ module Api::V1
       head 204
     end
 
+    def search_trip
+      trips = Trip.search_by_cities(params[:from], params[:to])
+      render json: trips, status: 200
+    end
+
     def trip_params
       params.require(:trip).permit(:departure_time, :arrival_time, :car, :city_origin_id, :city_destination_id)
     end

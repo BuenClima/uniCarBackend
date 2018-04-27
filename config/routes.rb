@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :sections, only: [:index, :show, :create, :update, :destroy]
       resources :cities, only: [:index, :show, :create, :update, :destroy]
       resources :passengers, only: [:index, :show, :create, :update, :destroy]
+      post 'searchTrip', to: 'trips#search_trip'
     end
   end
 end
