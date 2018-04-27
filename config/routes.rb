@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :cities, only: [:index, :show, :create, :update, :destroy]
       resources :passengers, only: [:index, :show, :create, :update, :destroy]
       post 'searchTrip', to: 'trips#search_trip'
+      post 'myTrips', to: 'passengers#my_trips'
     end
   end
 end

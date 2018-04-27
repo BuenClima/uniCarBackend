@@ -39,6 +39,10 @@ module Api::V1
       head 204
     end
 
+    def my_trips
+      render json: Passenger.my_trips(params[:trip])
+    end
+
     def passenger_params
       params.permit(:user, :trip)
     end
