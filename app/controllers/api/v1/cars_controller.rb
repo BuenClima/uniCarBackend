@@ -3,7 +3,7 @@ module Api::V1
 
     # GET /v1/cars
     def index
-      render json: Car.all
+      render json: current_user.cars
     end
 
     # GET /v1/cars/{id}
