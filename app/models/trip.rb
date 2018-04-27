@@ -8,8 +8,8 @@ class Trip < ApplicationRecord
             :departure_time,
             presence: true
 
-  scope :search_by_cities, ->(from, to) {
+  scope :search_by_cities, ->(from, to, date) {
     where(city_origin_id: from,
-          city_destination_id: to)
+          city_destination_id: to).where("departure_time > ?", date)
   }
 end

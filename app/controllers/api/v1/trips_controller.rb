@@ -49,7 +49,7 @@ module Api::V1
     end
 
     def search_trip
-      trips = Trip.search_by_cities(params[:from], params[:to])
+      trips = Trip.search_by_cities(params[:from], params[:to], params[:date])
       render json: trips, status: 200
     end
 
