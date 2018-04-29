@@ -1,0 +1,16 @@
+production:
+  cloud_name: "dnzstlsh8"
+  api_key: "792281943797689"
+  api_secret: "wckk53jbsqDOVPUl6r-leb60yDw"
+
+
+development:
+  cloud_name: "dnzstlsh8"
+  api_key: "792281943797689"
+  api_secret: "wckk53jbsqDOVPUl6r-leb60yDw"
+
+
+test:
+  cloud_name: "dnzstlsh8"
+  api_key: "792281943797689"
+  api_secret: "wckk53jbsqDOVPUl6r-leb60yDw"

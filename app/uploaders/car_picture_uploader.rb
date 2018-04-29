@@ -2,16 +2,37 @@ class CarPictureUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
+  include Cloudinary::CarrierWave
+  process :convert => 'png'
+  #process :tags => ['car_picture']
+
+  version :standard do
+    process :resize_to_fill => [100, 150, :north]
+  end
+
+  version :thumbnail do
+    resize_to_fit(50, 50)
+  end
+
+=begin
+  def public_id
+    return "my_folder/" + model.model
+  end
+=end
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  # storage :file
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
+
+=begin
   def store_dir
-    "uploads/images/cars/#{model.id}"
+    "XD"
   end
+=end
+
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
